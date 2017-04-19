@@ -1,0 +1,9 @@
+C:\Users\YatesBra004\Desktop\Fortress (Team Project)\Fortress (Team Project)\Fortress (Team Project)\bin\Debug\Fortress (Team Project).exe.config
+C:\Users\YatesBra004\Desktop\Fortress (Team Project)\Fortress (Team Project)\Fortress (Team Project)\bin\Debug\Fortress (Team Project).exe
+C:\Users\YatesBra004\Desktop\Fortress (Team Project)\Fortress (Team Project)\Fortress (Team Project)\bin\Debug\Fortress (Team Project).pdb
+C:\Users\YatesBra004\Desktop\Fortress (Team Project)\Fortress (Team Project)\Fortress (Team Project)\obj\Debug\Fortress (Team Project).csprojResolveAssemblyReference.cache
+C:\Users\YatesBra004\Desktop\Fortress (Team Project)\Fortress (Team Project)\Fortress (Team Project)\obj\Debug\Fortress__Team_Project_.Form1.resources
+C:\Users\YatesBra004\Desktop\Fortress (Team Project)\Fortress (Team Project)\Fortress (Team Project)\obj\Debug\Fortress__Team_Project_.Properties.Resources.resources
+C:\Users\YatesBra004\Desktop\Fortress (Team Project)\Fortress (Team Project)\Fortress (Team Project)\obj\Debug\Fortress (Team Project).csproj.GenerateResource.Cache
+C:\Users\YatesBra004\Desktop\Fortress (Team Project)\Fortress (Team Project)\Fortress (Team Project)\obj\Debug\Fortress (Team Project).exe
+C:\Users\YatesBra004\Desktop\Fortress (Team Project)\Fortress (Team Project)\Fortress (Team Project)\obj\Debug\Fortress (Team Project).pdb
