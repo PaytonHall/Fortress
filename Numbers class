@@ -24,6 +24,7 @@ namespace Fortress__Team_Project_
         int[] inputsL = new int[USER];
         int[] game = new int[GENERITOR];
         int[] damge = new int[USER];
+        bool[] checker = new bool[GENERITOR];
 
         //declare new random list
         Random nums = new Random();
@@ -49,9 +50,9 @@ namespace Fortress__Team_Project_
 
         //randomGen
         //this creats a new list of numbers them populates the game array
-        //paramiters: none
+        //paramiters: game
         //returns: none
-        public void randonGen()
+        public void randonGen(int[] game)
         {
             for (int i = 0; i < GENERITOR; i++)
             {
@@ -61,38 +62,47 @@ namespace Fortress__Team_Project_
 
         //checkNumbers
         //this validates the user input
-        //paramiters: array right, array left
+        //paramiters: int side
         //returns: bool
-        public bool checkNumbers()
+        public bool checkNumbers(int side)
         {
             bool bools = true;
+           
 
             for (int i = 0; i < USER; i++)
             {
-                int check = inputsR[i];
-                int check2 = inputsL[i];
-
+               
                 for (int j = 0; j < GENERITOR; j++)
                 {
-                    if (check == game[j])
-                    { }
+                    int check = 0;
+
+                    if (side == 1)
+                    {
+                        check = inputsR[i];
+                    }
+                    else
+                    {
+                        check = inputsL[i];
+                    }
+                    if (check == game[j] && checker[j] == true)
+                    {
+                        checker[j] = true;
+                    }
                     else
                     {
                         bools = false;
                     }
                 }
 
-                for (int j = 0; j < GENERITOR; j++)
-                {
-                    if (check2 == game[j])
-                    { }
-                    else
-                    {
-                        bools = false;
-                    }
-                }
             }
+
+            for (int i = 0; i < checker.Length; i++)
+            {
+                checker[i] = false;
+            }
+
             return bools;
+            
         }
 
         //subtrack
@@ -147,6 +157,15 @@ namespace Fortress__Team_Project_
                     inputsL[i] *= -1;
                 }
             }
-                    
-        }
-    }
+
+          }
+            //passDamage
+            //this methood pass the damage into the base class
+            //paramiters: row
+            //return: damge 
+            public int passDamage(int row)
+            {
+                return damge[row];
+            }
+      }
+ }
