@@ -1,0 +1,66 @@
+//Variables for base class
+        int leftBaseHealth = 30; //starts as 30, this is the total health for the left base
+        int rightBaseHealth = 30; //starts as 30, this is the total health for the right base
+
+        //Method getter for damage
+        //Name: damageGetter
+        //Purpose: get the damage from the numbers class
+        //Parameters: damage
+        //Returns: void
+        public void damageGetter()
+        {
+            //call to bool method choseSide in numbers class
+        }
+        
+
+        //Method setter for damage
+        //Name: damageSetter
+        //Purpose: set the damage
+        //Paramters: damage
+        //Returns: void
+        public void damageSetter()
+        {
+            //set variable direction from numbers class as directionTo
+        }
+        
+
+        //Method for subtracting damage
+        //Name: subDamage
+        //Purpose: subtract the damage from the health
+        //Parameters:
+        //Returns:
+        public bool subDamage()
+        {
+            //if directionTo bool is false then the damage will be added to the left side.
+            //Add directionTo to leftBaseHealth
+                //You add it becuase it's negative
+            //if directionTo bool is true then the damage will be subtracted from the right side.
+            //subtract directionTo to rightBaseHealth
+
+            //return bool directionTo
+
+        }//End subDamage
+
+        //Method for sending total health after subtracting the damage
+        //Name: sendHealth
+        //Purpose: send the health to GUI class
+        //Parameters: health
+        //Returns: void
+        public void sendHealth()
+        {
+            //send variables leftBaseHealth and rightBaseHealth to paytons GUI class
+        }
+
+        //Method for checking health
+        //Name: checkHealth
+        //Purpose: to check if the health has reached zero
+        //Parameters: leftBaseHealth, rightBaseHealth
+        //Returns: bool
+        public bool checkHealth()
+        {
+            //check health from both bases (variables leftBaseHealth and rightBaseHealth)
+            //if any of the health has reached zero send a bool
+            //if the bool is true then the healths are not yet zero or below zero
+            //if the bool is false then one of the healths are zero and the game needs to end
+            //send the bool to payton
+        }
