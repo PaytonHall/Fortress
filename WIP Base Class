@@ -64,3 +64,123 @@
             //if the bool is false then one of the healths are zero and the game needs to end
             //send the bool to payton
         }
+
+
+
+//*******
+//This is the NOT finished and NOT working code
+//Don't use any of this code, I'll have the real thing up and running this weekend
+//******
+//Seriously, don't use this dumpster fire!
+//******
+
+
+
+//Variables for base class (***Do these need to be in the big method???)
+        int base1 = 50; //starts as 50, this is the total health for the left base
+        int base2 = 50; //starts as 50, this is the total health for the right base
+
+
+        //Method that will contain all of the other methods
+    //Shawn will send this his variables to this method
+    //It will go through all of these methods in this method then
+    {   //START
+
+    //Method getter for damage
+        //Name: damageGetter
+        //Purpose: get the damage from the numbers class
+        //Parameters: damage
+        //Returns: void
+        public void damageGetter()
+        {
+            //call to bool method choseSide in numbers class
+        }//End damageGetter
+
+
+        //Method setter for damage
+        //Name: damageSetter
+        //Purpose: set the damage
+        //Paramters: damage
+        //Returns: void
+        public void damageSetter()
+        {
+            //set variable direction from numbers class as directionTo
+        }//End damageSetter
+
+
+        //Method for subtracting damage
+        //Name: subDamage
+        //Purpose: subtract the damage from the health
+        //Parameters:none(???)
+        //Returns:directionTo (do I really need to send this though or does a void method work better? (You don't really need to send anything back....)).
+        public bool subDamage()
+        {
+            //if directionTo bool is false then the damage will be added to the left side.
+            //Add directionTo to leftBaseHealth
+            if (directionTo = false)
+            {
+                base1 = base1 + directionTo;
+            }
+            //You add it becuase it's negative
+            //if directionTo bool is true then the damage will be subtracted from the right side.
+            //subtract directionTo to rightBaseHealth
+            if (directionTo = true)
+            {
+                base2 = base2 - directionTo;
+            }
+
+            //return bool directionTo
+            return directionTo      //***Do I (really) need to return anything??
+
+        }//End subDamage
+
+    }   //END
+
+
+    //Method for checking health
+    //Name: checkHealth
+    //Purpose: to check if the health has reached zero
+    //Parameters: leftBaseHealth, rightBaseHealth
+    //Returns: bool
+    public bool checkHealth()
+        {
+            //check health from both bases (variables leftBaseHealth and rightBaseHealth)
+            //if any of the health has reached zero send a bool
+            //if the bool is true then the healths are not yet zero
+            //if the bool is false then one of the healths are zero and the game needs to end
+
+            if (base1Health <= 0)
+            {
+                bool = false;
+            }
+            else
+            {
+                bool = true;
+            }
+
+            if (base2Health <= 0)
+            {
+                bool = false;
+            }
+            else
+            {
+                bool = true;
+            }
+            //send the bool to payton 
+            
+
+
+            //Method for sending total health after subtracting the damage
+            //Name: sendHealth
+            //Purpose: send the health to GUI class
+            //Parameters: health
+            //Returns: void
+        public void sendHealth(ref base1Health, ref base2Health)
+        {
+            //send variables base1Health and base2Health to paytons GUI class
+            
+            //pass by reference
+
+        }//End sendHealth
+
+    }//End checkHealth
