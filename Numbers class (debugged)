@@ -1,0 +1,157 @@
+//numbers class
+//Shawn Jones wrote this part of the program
+//04/11/17
+//I did not copy this code
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Fortress__Team_Project_
+{
+
+    class numbers
+    {
+        //declare const
+        const int USER = 3;
+        const int GENERITOR = 6;
+        const int MAX = 10;
+        const int MIN = 0;
+
+        //delcare arrays for users input and for random gen
+        int[] inputsR = new int[USER];
+        int[] inputsL = new int[USER];
+        int[] game = new int[GENERITOR];
+        int[] gameR = new int[GENERITOR];
+        int[] gameL = new int[GENERITOR];
+        int[] damge = new int[USER];
+
+        //declare new random list
+        Random nums = new Random();
+
+        //this is the getter and setters, these are will put it directly into the array
+        //rightValues
+        //this will input the passed values from the form class
+        //paramiters: int, int
+        //returns: none
+        public void rightValues(int input, int textbox)
+        {
+            inputsR[textbox] = input;
+        }
+
+        //leftValues
+        //this will input the passed values from the form class
+        //paramiters: int, int
+        //returns: none
+        public void leftValues(int input, int textbox)
+        {
+            inputsL[textbox] = input;
+        }
+
+        //randomGen
+        //this creats a new list of numbers them populates the game array, also it creats two clone arrays and populats them too. (One for each side)
+        //paramiters: game
+        //returns: none
+        public void randonGen(int[] game)
+        {
+            for (int i = 0; i < GENERITOR; i++)
+            {
+                game[i] = nums.Next(MIN, MAX);
+                gameR[i] += game[i];
+                gameL[i] += game[i];
+            }
+        }
+
+        //checkNumbers
+        //this validates the user input, true means good
+        //paramiters: int side
+        //returns: bool
+        public bool checkNumbers(int side, int i)
+        {
+            bool bools = false;
+            bool foundyou = true;
+            int j = 0;
+            //loop will end once value is found
+            do
+            {
+                //if the loop has run too many times it drops out
+                if (j == GENERITOR)
+                {
+                    return bools;
+                }
+                //chooses side first
+                else if (side == 0)
+                {
+                    //it see if the value it is looking at fits if no moves on 
+                    if (inputsR[i] == gameR[j])
+                    {
+                        //if yes drops out of loop the set the value of that sides array to zero then it sets bools to true. 
+                        gameR[j] -= (gameR[j] + 1);
+                        bools = true;
+                        foundyou = false;
+                    }
+                }
+                //same for left
+                else if (side == 1)
+                {
+                    if (inputsL[i] == gameL[j])
+                    {
+                        gameL[j] -= (gameL[j] + 1);
+                        bools = true;
+                        foundyou = false;
+                    }
+                }
+                j++;
+            } while (foundyou);
+            //returns the bool
+            return bools;
+        }
+
+        //subtrack
+        //this methood subtracts the values and then pouplates the damage array
+        //paramiters:none
+        //returns: none
+        public void subtrack()
+        {
+            for (int i = 0; i < USER; i++)
+            {
+                damge[i] = inputsR[i] - inputsL[i];
+            }
+        }
+
+        //choseSide
+        //this methood looks at the values of damge array if possive it retuns true, if negitve false, if 0 it will be counted as possitve. 
+        //paramiters: int row (0-2)
+        //returns: bool
+        public bool choseSide(int row)
+        {
+            bool direction = false;
+            if (MIN <= damge[row])
+            {
+                direction = true;
+            }
+            return direction;
+        }
+
+        //checkIf0
+        //this methood will check if the value of any array is 0
+        //paramiters: int side, int place
+        //returns: none
+        public void checkIf0(int place)
+        {
+            if (inputsR[place] == MIN || inputsL[place] == MIN)
+            {
+                damge[place] *= -1;
+            }
+        }
+        //passDamage
+        //this methood pass the damage into the base class
+        //paramiters: row
+        //return: damge 
+        public int passDamage(int row)
+        {
+            return damge[row];
+        }
+    }
+ }
