@@ -24,9 +24,9 @@ namespace Numbers_class_test
             int[] damage = new int[6];
             int i = 0;
             
-            //LINES 22 - 74 ARE FOR THE GUI CLASS ONLY!
+            //LINES 27 - 76 ARE FOR THE GUI CLASS ONLY!
             //this is the gen it need to be called to get new numbers you will need to pass in an array of 6.
-            mynum.randonGen(nums);
+            mynum.randonGen(ref nums);
             //these dont matter
             WriteLine("The hand");
             foreach (int value in nums)
@@ -43,9 +43,7 @@ namespace Numbers_class_test
             {
                 //the next two lines must ALWAYS be called to gether.
                 //to pass the values in you need to put the number the user inputs in first, then the text box (j) for test perpouses.
-                mynum.rightValues(int.Parse(ReadLine()), j);
-                //when calling the check method pass the side first then the text box you are in
-                bool check = mynum.checkNumbers(0, j);
+                bool check = mynum.rightValues(int.Parse(ReadLine()), j);
                 //if false up to you to write that this is just a test 
                 if (!check)
                 { 
@@ -54,7 +52,6 @@ namespace Numbers_class_test
                     mynum.leftValues(int.Parse(ReadLine()), j);
                     WriteLine("hope you did it right or you are going to break the program");
                     check = true;
-                    mynum.checkNumbers(0, j);
                 }
                 WriteLine(" value good");
             }
@@ -63,8 +60,8 @@ namespace Numbers_class_test
             WriteLine("player 2");
             for (int b = 0; b < 3; b++)
             {
-                mynum.leftValues(int.Parse(ReadLine()), b);
-                bool check = mynum.checkNumbers(1, b);
+                bool check = mynum.leftValues(int.Parse(ReadLine()), b);
+                //bool check = mynum.checkNumbers(1, b);
                 if (!check)
                 {
                     WriteLine("not valid input");
@@ -77,15 +74,15 @@ namespace Numbers_class_test
                 WriteLine(" value good");
 
             }
-            //LINES 75-96 ARE FOR THE BASE CLASS ONLY!
+            //LINES 77-98 ARE FOR THE BASE CLASS ONLY!
             //this test the subtrack method, the choose side method, the passDamage method, and checkIF0 method
             //the subtract methood needs called when ever your class is started up, I will put it at the top of your baseHeath methof so it is always called.
             mynum.subtrack();
-            
+            WriteLine("");
+            WriteLine("damge that is sent in to the base class");
+
             for (int h = 0; h < 3; h++)
             {
-                //checkIF0 method must be called on a row by row basis. You will need to pass the row into it (h in this test).
-                mynum.checkIf0(h);
                 //this is just so I could write it to the console, but you will use the passDamage methood to get the damge form my class. Just pass the row (h).
                 damage[h] += (mynum.passDamage(h));
                 Write($"{damage[h]} ");
@@ -129,30 +126,37 @@ namespace Numbers_class_test
         //rightValues
         //this will input the passed values from the form class
         //paramiters: int, int
-        //returns: none
-        public void rightValues(int input, int textbox)
+        //returns: bool
+        public bool rightValues(int input, int textbox)
         {
+            bool check = false;
             inputsR[textbox] = input;
+            check = checkNumbers(0, textbox);
+            return check;
         }
 
         //leftValues
         //this will input the passed values from the form class
         //paramiters: int, int
-        //returns: none
-        public void leftValues(int input, int textbox)
+        //returns: bool
+        public bool leftValues(int input, int textbox)
         {
+            bool check = false;
             inputsL[textbox] = input;
+            check = checkNumbers(1, textbox);
+            return check;
         }
 
         //randomGen
         //this creats a new list of numbers them populates the game array, also it creats two clone arrays and populats them too. (One for each side)
         //paramiters: game
         //returns: none
-        public void randonGen(int[] game)
+        public void randonGen(ref int[] num)
         {
             for (int i = 0; i < GENERITOR; i++)
             {
                 game[i] = nums.Next(MIN, MAX);
+                num[i] += game[i];
                 gameR[i] += game[i];
                 gameL[i] += game[i]; 
             }
@@ -187,21 +191,21 @@ namespace Numbers_class_test
                     foundyou = false;
                 }
             }
-            //same for left
-            else if (side == 1)
-            {
-                if (inputsL[i] == gameL[j])
+                //same for left
+                else if (side == 1)
                 {
-                    gameL[j] -= (gameL[j] + 1);
-                    bools = true;
-                    foundyou = false;
+                    if (inputsL[i] == gameL[j])
+                    {
+                        gameL[j] -= (gameL[j] + 1);
+                        bools = true;
+                        foundyou = false;
+                    }
                 }
-            }
-        j++;
-        } while (foundyou);
-        //returns the bool
-        return bools;
-    }
+                j++;
+                } while (foundyou);
+            //returns the bool
+            return bools;
+        }
 
         //subtrack
         //this methood subtracts the values and then pouplates the damage array
@@ -211,7 +215,10 @@ namespace Numbers_class_test
         {
             for (int i = 0; i < USER; i++)
             {
+                inputsR[i] *= findPairs((inputsR[i]));
+                inputsL[i] *= findPairs((inputsL[i]));
                 damge[i] = inputsR[i] - inputsL[i];
+                checkIf0(i);
             }
         }
 
@@ -248,28 +255,21 @@ namespace Numbers_class_test
         {
             return damge[row];
         }
-        //Not sure if we will need this but it is nice to have.
         //findPairs
         //this methood finds all the pairs in side of the array
         //paramiters: place that we are checking for pairs
-        //returns: bool
-        public bool findPairs(int checkPlace)
+        //returns: int times found
+        public int findPairs(int checkPlace)
         {
-        bool yes = false;
-            foreach(int value in game)
+            int yes = 0;
+            for(int i = 0; i < GENERITOR; i++)
             {
-                if ( checkPlace == game[value])
+                if (checkPlace == game[i])
                 {
-                    foreach (int place in game)
-                    {
-                        if (checkPlace == game[place])
-                        {
-                            yes = true;   
-                        }
-                    }
+                    yes += 1;
                 }
-
             }
-        return yes;
+            return yes;
         }
  }
+
