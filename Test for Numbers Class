@@ -1,0 +1,275 @@
+//this is my testing of my class
+//I wrote coments in all the lines of code that will be like yours in your classes.
+//I explained why you need to call them, when you need to call them, and what you need to pass into them
+//I used magic # to make it eaiser for you to see what is going on. 
+//let me know if you have any question
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using static System.Console;
+
+namespace Numbers_class_test
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            numbers mynum = new numbers();
+
+            int[] nums = new int[6];
+            int[] inputR = new int[3];
+            int[] inputL = new int[3];
+            int[] damage = new int[6];
+            int i = 0;
+            
+            //LINES 22 - 74 ARE FOR THE GUI CLASS ONLY!
+            //this is the gen it need to be called to get new numbers you will need to pass in an array of 6.
+            mynum.randonGen(nums);
+            //these dont matter
+            WriteLine("The hand");
+            foreach (int value in nums)
+            {
+                WriteLine($"{nums[i]}");
+                i++;
+                
+            }
+
+            //this test the check methood 
+            WriteLine(" ");
+            WriteLine("player 1");
+            for (int j = 0; j < 3; j++)
+            {
+                //the next two lines must ALWAYS be called to gether.
+                //to pass the values in you need to put the number the user inputs in first, then the text box (j) for test perpouses.
+                mynum.rightValues(int.Parse(ReadLine()), j);
+                //when calling the check method pass the side first then the text box you are in
+                bool check = mynum.checkNumbers(0, j);
+                //if false up to you to write that this is just a test 
+                if (!check)
+                { 
+                    WriteLine("not valid input");
+                    WriteLine("enter valid input please don't enter invalid more then twice for this test");
+                    mynum.leftValues(int.Parse(ReadLine()), j);
+                    WriteLine("hope you did it right or you are going to break the program");
+                    check = true;
+                    mynum.checkNumbers(0, j);
+                }
+                WriteLine(" value good");
+            }
+            //same for left expect for the leftValues method is used to input values
+            WriteLine(" ");
+            WriteLine("player 2");
+            for (int b = 0; b < 3; b++)
+            {
+                mynum.leftValues(int.Parse(ReadLine()), b);
+                bool check = mynum.checkNumbers(1, b);
+                if (!check)
+                {
+                    WriteLine("not valid input");
+                    WriteLine("enter valid input please don't enter invalid more then twice for this test");
+                    mynum.leftValues(int.Parse(ReadLine()), b);
+                    WriteLine("hope you did it right or you are going to break the program");
+                    check = true;
+                    mynum.checkNumbers(1, b);
+                }
+                WriteLine(" value good");
+
+            }
+            //LINES 75-96 ARE FOR THE BASE CLASS ONLY!
+            //this test the subtrack method, the choose side method, the passDamage method, and checkIF0 method
+            //the subtract methood needs called when ever your class is started up, I will put it at the top of your baseHeath methof so it is always called.
+            mynum.subtrack();
+            
+            for (int h = 0; h < 3; h++)
+            {
+                //checkIF0 method must be called on a row by row basis. You will need to pass the row into it (h in this test).
+                mynum.checkIf0(h);
+                //this is just so I could write it to the console, but you will use the passDamage methood to get the damge form my class. Just pass the row (h).
+                damage[h] += (mynum.passDamage(h));
+                Write($"{damage[h]} ");
+                //this is how you choose a side pass the row, and if it is true the left takes damage, if false the right will (check me on that make sure I have that in the right order).
+                bool side = mynum.choseSide(h);
+                if (side)
+                    WriteLine("true");
+                else if (!side)
+                    WriteLine("false");
+                else
+                    WriteLine("crap!");
+
+            }
+            
+
+            ReadKey(true);
+        }
+    }
+}
+
+    class numbers
+    {
+        //declare const
+        const int USER = 3;
+        const int GENERITOR = 6;
+        const int MAX = 10;
+        const int MIN = 0;
+
+        //delcare arrays for users input and for random gen
+        int[] inputsR = new int[USER];
+        int[] inputsL = new int[USER];
+        int[] game = new int[GENERITOR];
+        int[] gameR = new int[GENERITOR];
+        int[] gameL = new int[GENERITOR];
+        int[] damge = new int[USER];
+        
+        //declare new random list
+        Random nums = new Random();
+
+        //this is the getter and setters, these are will put it directly into the array
+        //rightValues
+        //this will input the passed values from the form class
+        //paramiters: int, int
+        //returns: none
+        public void rightValues(int input, int textbox)
+        {
+            inputsR[textbox] = input;
+        }
+
+        //leftValues
+        //this will input the passed values from the form class
+        //paramiters: int, int
+        //returns: none
+        public void leftValues(int input, int textbox)
+        {
+            inputsL[textbox] = input;
+        }
+
+        //randomGen
+        //this creats a new list of numbers them populates the game array, also it creats two clone arrays and populats them too. (One for each side)
+        //paramiters: game
+        //returns: none
+        public void randonGen(int[] game)
+        {
+            for (int i = 0; i < GENERITOR; i++)
+            {
+                game[i] = nums.Next(MIN, MAX);
+                gameR[i] += game[i];
+                gameL[i] += game[i]; 
+            }
+        }
+
+        //checkNumbers
+        //this validates the user input, true means good
+        //paramiters: int side
+        //returns: bool
+        public bool checkNumbers(int side, int i)
+        {
+            bool bools = false;
+            bool foundyou = true;
+            int j = 0;
+        //loop will end once value is found
+        do
+        {
+            //if the loop has run too many times it drops out
+            if (j == GENERITOR)
+            {
+                return bools;
+            }
+            //chooses side first
+            else if (side == 0)
+            {
+                //it see if the value it is looking at fits if no moves on 
+                if (inputsR[i] == gameR[j])
+                {
+                    //if yes drops out of loop the set the value of that sides array to zero then it sets bools to true. 
+                    gameR[j] -= (gameR[j] + 1);
+                    bools = true;
+                    foundyou = false;
+                }
+            }
+            //same for left
+            else if (side == 1)
+            {
+                if (inputsL[i] == gameL[j])
+                {
+                    gameL[j] -= (gameL[j] + 1);
+                    bools = true;
+                    foundyou = false;
+                }
+            }
+        j++;
+        } while (foundyou);
+        //returns the bool
+        return bools;
+    }
+
+        //subtrack
+        //this methood subtracts the values and then pouplates the damage array
+        //paramiters:none
+        //returns: none
+        public void subtrack()
+        {
+            for (int i = 0; i < USER; i++)
+            {
+                damge[i] = inputsR[i] - inputsL[i];
+            }
+        }
+
+        //choseSide
+        //this methood looks at the values of damge array if possive it retuns true, if negitve false, if 0 it will be counted as possitve. 
+        //paramiters: int row (0-2)
+        //returns: bool
+        public bool choseSide(int row)
+        {
+            bool direction = false;
+            if (MIN <= damge[row])
+            {
+                direction = true;
+            }
+            return direction;
+        }
+
+        //checkIf0
+        //this methood will check if the value of any array is 0
+        //paramiters: int side, int place
+        //returns: none
+        public void checkIf0(int place)
+        {
+                if(inputsR[place] == MIN || inputsL[place] == MIN)
+                {
+                    damge[place] *= -1;
+                }
+        }
+        //passDamage
+        //this methood pass the damage into the base class
+        //paramiters: row
+        //return: damge 
+        public int passDamage(int row)
+        {
+            return damge[row];
+        }
+        //Not sure if we will need this but it is nice to have.
+        //findPairs
+        //this methood finds all the pairs in side of the array
+        //paramiters: place that we are checking for pairs
+        //returns: bool
+        public bool findPairs(int checkPlace)
+        {
+        bool yes = false;
+            foreach(int value in game)
+            {
+                if ( checkPlace == game[value])
+                {
+                    foreach (int place in game)
+                    {
+                        if (checkPlace == game[place])
+                        {
+                            yes = true;   
+                        }
+                    }
+                }
+
+            }
+        return yes;
+        }
+ }
