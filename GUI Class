@@ -12,7 +12,9 @@ namespace Group_Project_Fortress
 {
     public partial class Form1 : Form
     {
-        public Form1()
+    }
+    public class GUI {
+        public GUI()
         {
             InitializeComponent();
             cards = mynum.randonGen();
@@ -303,4 +305,5 @@ namespace Group_Project_Fortress
 
         }
     }
+}
 }
