@@ -12,150 +12,126 @@ namespace Group_Project_Fortress
 {
     public partial class Form1 : Form
     {
-    }
-    public class GUI {
-        public GUI()
-        {
-            InitializeComponent();
-            cards = mynum.randonGen();
-            baseclass = mybase//lol do something here with nats class.
+       
+
+     
+            public Form1()
+            {
+                InitializeComponent();
+             //ADD SHAWNS CLASS CALL IT MYNUM: mynum
+             //ADD NATALIES CLASS CALL IT MYBASE: mybase
         }
 
 
-        //A list of all the variables we will need.
-        int base1 = 50;
-        int base2 = 50;
+            //A list of all the variables we will need.
+            int baseone = 50;
+            int basetwo = 50;
 
-        int onecard1;
-        int onecard2;
-        int onecard3;
+            int onecard1;
+            int onecard2;
+            int onecard3;
 
-        int twocard1;
-        int twocard2;
-        int twocard3;
-        int cardBox;
-        int roundcounter;
+            int twocard1;
+            int twocard2;
+            int twocard3;
+            int cardBox;
+            int roundcounter;
 
-        int[] cards = new int[5];
-        int[] right = new int[3];
-        int[] left = new int[3];
+            int[] cards = new int[5];
+            int[] right = new int[3];
+            int[] left = new int[3];
 
-        Random rnd = new Random();
-
-
-
-        //This method will clear all the text boxes and boards and things.
-        //This method will refresh the numbers in each spot at the begining of each round.
-        //It clears the boxes that need to be cleared and then sets the new numbers that have been calculated.
-        public void endround()
-        {
-            //call this method to shawn:
-            mynum.subtract();
+            Random rnd = new Random();
 
 
 
-
-
-            for (int i = 0; i == cards.Length; i++)
+            //This method will clear all the text boxes and boards and things.
+            //This method will refresh the numbers in each spot at the begining of each round.
+            //It clears the boxes that need to be cleared and then sets the new numbers that have been calculated.
+            public void startround()
             {
-                cards[i] = 0;
-                
-                
-            }
-            for (int i = 0; i == right.Length; i++)
-            {
-                right[i] = 0;
-                left[i] = 0;
-            }
-
-            //reset all data and colors to text box.
+                //call this method to shawn:
+                mynum.subtract();
 
 
-            LeftCard1_.BackColor = Color.White;
-            LeftCard2_.BackColor = Color.White;
-            LeftCard3_.BackColor = Color.White;
-            RightCard1_.BackColor = Color.White;
-            RightCard2_.BackColor = Color.White;
-            RightCard3_.BackColor = Color.White;
 
-            LeftCard1_.Text = "";
-            LeftCard2_.Text = "";
-            LeftCard3_.Text = "";
-            RightCard1_.Text = "";
-            RightCard2_.Text = "";
-            RightCard3_.Text = "";
 
-            TowerBoxRightOne.text() = right[0];
-            TowerBoxRightTwo.text() = right[1];
-            TowerBoxRightThree.text() = right[2];
 
-            TowerBoxLeftOne.text() = right[0];
-            TowerBoxLeftTwo.text() = right[1];
-            TowerBoxLeftThree.text() = right[2];
+                for (int i = 0; i == cards.Length; i++)
+                {
+                    cards[i] = 0;
 
-            CardBoxOne.text() = cards[0];
-            CardBoxTwo.text() = cards[1];
-            CardBoxThree.text() = cards[2];
-            CardBoxFour.text() = cards[3];
-            CardBoxFIve.text() = cards[4];
 
-            roundcounter++;
+                }
+                for (int i = 0; i == right.Length; i++)
+                {
+                    right[i] = 0;
+                    left[i] = 0;
+                }
 
-            //set health each time
-            //base1 and base2
-            //The health will be updated at the end of each round.
+                //reset all data and colors to text box.
 
-            mybase.basehealth(ref base1, ref base2);
 
-            base1.Text = base1;
-            base2.Text = base2;
+                LeftCard1.BackColor = Color.White;
+                LeftCard2.BackColor = Color.White;
+                LeftCard3.BackColor = Color.White;
+                RightCard1.BackColor = Color.White;
+                RightCard2.BackColor = Color.White;
+                RightCard3.BackColor = Color.White;
+
+                LeftCard1.Text = "";
+                LeftCard2.Text = "";
+                LeftCard3.Text = "";
+                RightCard1.Text = "";
+                RightCard2.Text = "";
+                RightCard3.Text = "";
+
+                cardBox.Text = "";
+
+                roundcounter++;
+
+                //set health each time
+                //base1 and base2
+                //The health will be updated at the end of each round.
+
+                mybase.basehealth(ref baseone, ref basetwo);
+
+                base1.Text = $"{baseone}";
+                base2.Text = $"{basetwo}";
 
 
 
 
             //send test to natalie to see if anyone won1!
             if (mybase.Health() = false)
-            {
-                MessageBox.Show("Wow! Good Game! Thanks For Playing!!!");
-                this.Close();
+                {
+                    MessageBox.Show("Wow! Good Game! Thanks For Playing!!!");
+                    this.Close();
 
+
+                }
+            }
+
+
+            //this method will be active once all the boxes have been inputed with correct numbers. 
+            //Once that happens, all the boxes will be revealed, then the calculations will be sent to the numbers class.
+            //Send numbers to shawn.
+            //recieve numbers later.
+            public void battle()
+            {
+                //when the button is clicked, run this:
 
             }
-        }
-        
-        public void hitbutotn()
-        {
-            mynum.Subrat();
-
-
-
-
-        }
-
-
-        //this method will be active once all the boxes have been inputed with correct numbers. 
-        //Once that happens, all the boxes will be revealed, then the calculations will be sent to the numbers class.
-        //Send numbers to shawn.
-        //recieve numbers later.
-        public void battle()
-        {
-           //when the button is clicked, run this:
-
-        }
-        //-----------------------------------------------------------
-        //-----------------------------------------------------------
-        //-----------------------------------------------------------
-        //THIS IS ALL THE CHECKING FOR EACH BOX
-        //-----------------------------------------------------------
-        //-----------------------------------------------------------
-        //-----------------------------------------------------------
-        private void RightCard3_Leave(object sender, EventArgs e)
-        {
-            //When I leave the box, run this method.
-            //example of what we need
-
-
-           bool chekc = rightValues(int.Parse(RightCard3_.Text), 2);
+            //-----------------------------------------------------------
+            //-----------------------------------------------------------
+            //-----------------------------------------------------------
+            //THIS IS ALL THE CHECKING FOR EACH BOX
+            //-----------------------------------------------------------
+            //-----------------------------------------------------------
+            //-----------------------------------------------------------
+            private void RightCard3_Leave(object sender, EventArgs e)
+            {
+            bool chekc = mynum.rightValues(int.Parse(RightCard3.Text), 2);
 
 
 
@@ -164,120 +140,101 @@ namespace Group_Project_Fortress
             if (chekc != true)
             {
 
-                MessageBox.Show($"{RightCard3_.text} is not one of the cards, try again.");
-                RightCard3_.Text.Clear();
-             
-                RightCard3_.Focus();
+                MessageBox.Show($"{RightCard3.Text} is not one of the cards, try again.");
+                RightCard3.Clear();
+
+                RightCard3.Focus();
 
 
             }
-            else { 
-            RightCard3_.BackColor = Color.Black;
-                }
+            else
+            {
+                RightCard3.BackColor = Color.Black;
+            }
 
         }
         private void RightCard2_Leave(object sender, EventArgs e)
-        {
-            //When I leave the box, run this method.
-
-            bool chekc = rightValues(int.Parse(RightCard2_.Text), 1);
-
-
-
-
-
-            if (chekc != true)
             {
+                //When I leave the box, run this method.
 
-                MessageBox.Show($"{RightCard2_.text} is not one of the cards, try again.");
-                RightCard2_.Text.Clear();
+                bool chekc = mynum.rightValues(int.Parse(RightCard2.Text), 1);
 
-                RightCard2_.Focus();
 
+
+
+
+                if (chekc != true)
+                {
+
+                    MessageBox.Show($"{RightCard2.Text} is not one of the cards, try again.");
+                    RightCard2.Clear();
+
+                    RightCard2.Focus();
+
+
+                }
+                else
+                {
+                    RightCard2.BackColor = Color.Black;
+                }
 
             }
-            else
+            private void RightCard1_Leave(object sender, EventArgs e)
             {
-                RightCard2_.BackColor = Color.Black;
-            }
-
-        }
-        private void RightCard1_Leave(object sender, EventArgs e)
-        {
-            //When I leave the box, run this method.
-            bool chekc = rightValues(int.Parse(RightCard1_.Text), 0);
+                //When I leave the box, run this method.
+                bool chekc = mynum.rightValues(int.Parse(RightCard1.Text), 0);
 
 
 
 
 
-            if (chekc != true)
-            {
+                if (chekc != true)
+                {
 
-                MessageBox.Show($"{RightCard1_.text} is not one of the cards, try again.");
-                RightCard1_.Text.Clear();
+                    MessageBox.Show($"{RightCard1.Text} is not one of the cards, try again.");
+                    RightCard1.Clear();
 
-                RightCard1_.Focus();
-
-
-            }
-            else
-            {
-                RightCard1_.BackColor = Color.Black;
-            }
-
-        }
-        private void LeftCard3_Leave(object sender, EventArgs e)
-        {
-            bool chekc = leftValues(int.Parse(LeftCard3_.Text), 2);
+                    RightCard1.Focus();
 
 
-
-
-
-            if (chekc != true)
-            {
-
-                MessageBox.Show($"{LeftCard3_.text} is not one of the cards, try again.");
-                LeftCard3_.Text.Clear();
-
-                LeftCard3_.Focus();
-
+                }
+                else
+                {
+                    RightCard1.BackColor = Color.Black;
+                }
 
             }
-            else
+            private void LeftCard3_Leave(object sender, EventArgs e)
             {
-                LeftCard3_.BackColor = Color.Black;
-            }
 
         }
         private void LeftCard2_Leave(object sender, EventArgs e)
-        {
-            bool chekc = leftValues(int.Parse(LeftCard2_.Text), 1);
-
-
-
-
-
-            if (chekc != true)
             {
+                bool chekc = mynum.leftValues(int.Parse(LeftCard2.Text), 1);
 
-                MessageBox.Show($"{LeftCard2_.text} is not one of the cards, try again.");
-                LeftCard2_.Text.Clear();
 
-                LeftCard2_.Focus();
 
+
+
+                if (chekc != true)
+                {
+
+                    MessageBox.Show($"{LeftCard2.Text} is not one of the cards, try again.");
+                    LeftCard2.Clear();
+
+                    LeftCard2.Focus();
+
+
+                }
+                else
+                {
+                    LeftCard2.BackColor = Color.Black;
+                }
 
             }
-            else
-            {
-                LeftCard2_.BackColor = Color.Black;
-            }
-
-        }
         private void LeftCard1_Leave(object sender, EventArgs e)
         {
-            bool chekc = leftValues(int.Parse(LeftCard1_.Text), 0);
+            bool chekc = mynum.leftValues(int.Parse(LeftCard1.Text), 0);
 
 
 
@@ -286,24 +243,25 @@ namespace Group_Project_Fortress
             if (chekc != true)
             {
 
-                MessageBox.Show($"{LeftCard1_.text} is not one of the cards, try again.");
-                LeftCard1_.Text.Clear();
+                MessageBox.Show($"{LeftCard1.Text} is not one of the cards, try again.");
+                LeftCard1.Clear();
 
-                LeftCard1_.Focus();
+                LeftCard1.Focus();
 
 
             }
             else
             {
-                LeftCard1_.BackColor = Color.Black;
+                LeftCard1.BackColor = Color.Black;
             }
+        }
 
 
 
         private void button1_Click(object sender, EventArgs e)
-        {
+            {
 
+            
         }
     }
-}
 }
