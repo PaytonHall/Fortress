@@ -1,0 +1,77 @@
+//Variables for base class.
+        int base1 = 50; //starts as 50, this is the total health for the left base
+        int base2 = 50; //starts as 50, this is the total health for the right base
+
+
+        //did not incude a damage getter because I was not computing the damage from the two players.
+        //did not include a setter for damage becuase the subtractDamage method and setter were the same.
+
+
+        //Method setter for damage
+        //Name: damageSetter
+        //Purpose: set the damage
+        //Paramters: damage
+        //Returns: void
+        public void subtractDamage(bool direction, int damage)
+        {
+            if (direction == true)
+            {
+                base2 = base2 - damage;
+            }
+            else
+            {
+                base1 = base1 + damage;
+            }
+
+        }//End subtractDamage
+       
+        
+        //Method for checking health
+        //Name: checkHealth
+        //Purpose: to check if the health has reached zero
+        //Parameters: leftBaseHealth, rightBaseHealth
+        //Returns: bool
+        public bool checkHealth()
+        {
+            //Variables
+            bool health;
+            //check health from both bases (variables base1 and base2)
+            //if any of the health has reached zero send a bool
+            //if the bool is true then the healths are not yet zero
+            //if the bool is false then one of the healths are zero and the game needs to end
+            if (base1 <= 0)
+            {
+                health = false;
+            }
+            else
+            {
+                health = true;
+            }
+
+            if (base2 <= 0)
+            {
+                health = false;
+            }
+            else
+            {
+                health = true;
+            }
+
+            //send the bool to payton 
+            return health;
+        
+        }//End checkHealth
+
+    
+        //Method for sending total health after subtracting the damage
+        //Name: sendHealth
+        //Purpose: send the health to GUI class
+        //Parameters: health
+        //Returns: void
+        public void sendHealth()
+        {
+            //send variables base1 and base2 to paytons GUI class
+            //pass by reference
+            //calledtopaytonclass(ref base1, ref base2)
+
+        }//End sendHealth
