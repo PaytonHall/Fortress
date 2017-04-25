@@ -7,16 +7,25 @@
         int base2 = 50; //starts as 50, this is the total health for the right base
 
 
-        //did not incude a damage getter because I was not computing the damage from the two players.
         //did not include a setter for damage becuase the subtractDamage method and setter were the same.
+        
+        //Method getter for damage
+        //Name: damageGetter
+        //Purpose: get the damage
+        //parameters: direction and damage
+        //Returns: damage
+        public int damageGetter(bool direction, int damage)
+        {
+                
+        }
 
 
         //Method setter for damage
         //Name: damageSetter
         //Purpose: set the damage
-        //Paramters: damage
+        //Paramters: none
         //Returns: void
-        public void subtractDamage(bool direction, int damage)
+        public void subtractDamage()
         {
             if (direction == true)
             {
