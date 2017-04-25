@@ -1,4 +1,8 @@
-//Variables for base class.
+        //The Base class was written by Natalie
+        //Last Edited: April 25, 2017
+        //This code was not coped, this is all of my own code.
+        
+        //Variables for base class.
         int base1 = 50; //starts as 50, this is the total health for the left base
         int base2 = 50; //starts as 50, this is the total health for the right base
 
